@@ -1,0 +1,231 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+All colors MUST be HSL.
+*/
+
+@layer base {
+:root {
+    --background: 210 25% 8%;
+    --foreground: 0 0% 100%;
+
+    --card: 210 20% 12%;
+    --card-foreground: 0 0% 100%;
+
+    --popover: 210 20% 12%;
+    --popover-foreground: 0 0% 100%;
+
+    --primary: 180 100% 60%;
+    --primary-foreground: 210 25% 8%;
+
+    --secondary: 25 90% 60%;
+    --secondary-foreground: 210 25% 8%;
+
+    --muted: 210 15% 20%;
+    --muted-foreground: 210 10% 60%;
+
+    --accent: 180 100% 60%;
+    --accent-foreground: 210 25% 8%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 0 0% 100% / 0.08;
+    --input: 0 0% 100% / 0.08;
+    --ring: 180 100% 60%;
+
+    --radius: 0.5rem;
+
+    /* Custom tokens */
+    --surface: 210 25% 6%;
+    --panel: 0 0% 100% / 0.02;
+    --accent-alt: 180 100% 60%;
+    --soft-glow: 25 90% 60% / 0.2;
+    --card-border: 0 0% 100% / 0.08;
+    --shadow: 210 30% 4% / 0.8;
+    --sun-glow: 25 90% 60%;
+
+    /* Rainbow button colors */
+    --color-1: 0 100% 63%;
+    --color-2: 270 100% 63%;
+    --color-3: 210 100% 63%;
+    --color-4: 195 100% 63%;
+    --color-5: 90 100% 63%;
+
+    /* Gradients */
+    --gradient-hero-radial: radial-gradient(800px 600px at 50% 40%, hsl(25 90% 60% / 0.15) 0%, transparent 60%);
+    --gradient-hero-overlay: linear-gradient(180deg, hsl(210 25% 8% / 0.3), hsl(210 25% 8% / 0.95));
+    --gradient-cta: linear-gradient(90deg, hsl(180 100% 60%), hsl(180 100% 50%));
+    --gradient-sun: radial-gradient(circle, hsl(35 100% 65%), hsl(25 90% 60%), hsl(20 85% 50%));
+
+    /* Typography */
+    --font-primary: 'Space Grotesk', 'Montserrat', system-ui, -apple-system, sans-serif;
+    --font-secondary: 'Space Mono', 'Source Code Pro', monospace;
+    --font-mono: 'Space Mono', 'Source Code Pro', 'Fira Code', monospace;
+
+    /* Layout */
+    --container-max: 1280px;
+    --transition: 220ms cubic-bezier(0.22, 0.9, 0.32, 1);
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: var(--font-secondary);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-primary);
+  }
+}
+
+@layer components {
+  .container-custom {
+    max-width: var(--container-max);
+    margin: 0 auto;
+    padding: 0 1.75rem;
+  }
+
+  .card-glass {
+    background: hsl(var(--panel));
+    border: 1px solid hsl(var(--card-border));
+    border-radius: var(--radius);
+    backdrop-filter: blur(8px);
+  }
+
+  .text-gradient {
+    background: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--secondary)));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+}
+
+@layer utilities {
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+    will-change: transform;
+  }
+
+  @keyframes float {
+    0%, 100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-12px);
+    }
+  }
+
+  .hover-lift {
+    transition: transform var(--transition), box-shadow var(--transition);
+  }
+
+  .hover-lift:hover {
+    transform: translateY(-4px) scale(1.02);
+    box-shadow: 0 20px 60px hsl(var(--shadow));
+  }
+
+  .animate-sun {
+    animation: sun-float 8s ease-in-out infinite;
+  }
+
+  @keyframes sun-float {
+    0%, 100% {
+      transform: translateY(0) scale(1);
+    }
+    50% {
+      transform: translateY(-30px) scale(1.05);
+    }
+  }
+
+  .animate-cube-1 {
+    animation: cube-float-1 10s ease-in-out infinite;
+  }
+
+  @keyframes cube-float-1 {
+    0%, 100% {
+      transform: translate(0, 0) rotateX(15deg) rotateY(-15deg);
+    }
+    50% {
+      transform: translate(-10px, -20px) rotateX(20deg) rotateY(-20deg);
+    }
+  }
+
+  .animate-cube-2 {
+    animation: cube-float-2 12s ease-in-out infinite;
+  }
+
+  @keyframes cube-float-2 {
+    0%, 100% {
+      transform: translate(0, 0) rotateX(-10deg) rotateY(20deg);
+    }
+    50% {
+      transform: translate(10px, -25px) rotateX(-15deg) rotateY(25deg);
+    }
+  }
+
+  .animate-cube-3 {
+    animation: cube-float-3 11s ease-in-out infinite;
+  }
+
+  @keyframes cube-float-3 {
+    0%, 100% {
+      transform: translate(0, 0) rotateX(10deg) rotateY(-25deg);
+    }
+    50% {
+      transform: translate(-15px, -15px) rotateX(15deg) rotateY(-30deg);
+    }
+  }
+
+  .animate-rainbow {
+    animation: rainbow 2s linear infinite;
+  }
+
+  @keyframes rainbow {
+    0%, 100% {
+      transform: rotate(0deg);
+    }
+    25% {
+      transform: rotate(90deg);
+    }
+    50% {
+      transform: rotate(180deg);
+    }
+    75% {
+      transform: rotate(270deg);
+    }
+  }
+
+  .animate-float-up {
+    animation: float-up 3s ease-out infinite;
+  }
+
+  @keyframes float-up {
+    0%, 100% {
+      transform: translateY(0px) rotateX(0deg);
+      opacity: 0.8;
+    }
+    50% {
+      transform: translateY(-20px) rotateX(10deg);
+      opacity: 0.4;
+    }
+  }
+
+  @keyframes float {
+    0%, 100% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+  }
+}
